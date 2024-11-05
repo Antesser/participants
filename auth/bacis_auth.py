@@ -14,7 +14,7 @@ from participants.models import participant
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/token")
 
 
 def verify_password(plain_password, hashed_password):
@@ -76,5 +76,7 @@ async def read_users_me(
 ):
     return JSONResponse(
         status_code=200,
-        content={"message": f"User {current_user.email} is currently logged in"},
+        content={
+            "message": f"User {current_user.email} is currently logged in"
+        },
     )

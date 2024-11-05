@@ -1,5 +1,7 @@
 from sqlalchemy import (
     Column,
+    Date,
+    ForeignKey,
     Integer,
     LargeBinary,
     String,
@@ -17,4 +19,14 @@ participant = Table(
     Column("last_name", String),
     Column("email", String, unique=True),
     Column("password", LargeBinary),
+)
+
+
+rating = Table(
+    "ratings",
+    metadata,
+    Column("id", Integer, primary_key=True),
+    Column("member_id", Integer, ForeignKey("participants.id")),
+    Column("rated_member_id", Integer, ForeignKey("participants.id")),
+    Column("date", Date),
 )
