@@ -1,4 +1,6 @@
+from datetime import datetime, timezone
 from sqlalchemy import (
+    TIMESTAMP,
     Column,
     Date,
     ForeignKey,
@@ -18,6 +20,9 @@ participant = Table(
     Column("first_name", String),
     Column("last_name", String),
     Column("email", String, unique=True),
+    Column(
+        "date", TIMESTAMP(timezone=True), default=datetime.now(timezone.utc)
+    ),
     Column("password", LargeBinary),
 )
 

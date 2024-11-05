@@ -6,6 +6,7 @@ from auth.bacis_auth import router as basic_auth_router
 from logger import logging
 from participants.database import create_table, drop_table
 from participants.router import router as user_creation_router
+from participants.all_participants import router as all_clients_router
 
 
 @asynccontextmanager
@@ -24,3 +25,4 @@ app = FastAPI(lifespan=lifespan)
 
 app.include_router(user_creation_router)
 app.include_router(basic_auth_router)
+app.include_router(all_clients_router)
