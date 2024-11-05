@@ -11,13 +11,11 @@ class Settings(BaseSettings):
         env_file=".env",
         extra="ignore",
     )
-    REDIS_HOST: str
-    REDIS_PORT: int
     DB_HOST: str
     DB_PORT: int
     DB_NAME: str
     DB_USER: str
-    DB_PASS: int
+    DB_PASS: str
 
     MAIL_USERNAME: str
     MAIL_PASSWORD: str

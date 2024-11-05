@@ -1,25 +1,25 @@
 version: '3.12'
 
+volumes:
+  data:
+
 services:
   web:
     env_file:
     - ".env"
     build: .
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    command: uvicorn main:app --host 0.0.0.0
     volumes:
       - .:/app
     ports:
-      - 8000:8000
+      - 5000:8000
     depends_on:
-      - db
-  db:
-    image: postgres:13-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - postgres_db
+  postgres_db:
+    image: postgres
     environment:
-      - POSTGRES_USER=myuser
-      - POSTGRES_PASSWORD=mypassword
-      - POSTGRES_DB=mydatabase
-
-volumes:
-  postgres_data:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+    ports:
+      - "5432:5432"

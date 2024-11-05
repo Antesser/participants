@@ -1,7 +1,6 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
-from fastapi.openapi.docs import get_swagger_ui_html
 
 from auth.bacis_auth import router as basic_auth_router
 from logger import logging
