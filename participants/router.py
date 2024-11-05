@@ -120,9 +120,9 @@ async def rate_member(
         )
 
         first_query_dict = mutual_rating_result_first.fetchone()._mapping
-        print("1", first_query_dict)
+
         second_query_dict = mutual_rating_result_second.fetchone()._mapping
-        print("2", second_query_dict)
+
     except AttributeError:
         return {"message": "Rating successful"}
 
@@ -142,8 +142,7 @@ async def rate_member(
         rated_member_result = await session.execute(rated_member_query)
         rated_member_result_dict = rated_member_result.fetchone()._mapping
         rated_member_email = rated_member_result_dict.get("email")
-        print("member_email", member_email)
-        print("rated_member_email", rated_member_email)
+
         message = MessageSchema(
             subject="You liked a member!",
             recipients=[
