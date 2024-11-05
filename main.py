@@ -1,12 +1,13 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.openapi.docs import get_swagger_ui_html
 
 from auth.bacis_auth import router as basic_auth_router
 from logger import logging
+from participants.all_participants_router import router as all_clients_router
 from participants.database import create_table, drop_table
 from participants.router import router as user_creation_router
-from participants.all_participants import router as all_clients_router
 
 
 @asynccontextmanager

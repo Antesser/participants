@@ -126,11 +126,10 @@ async def rate_member(
     except AttributeError:
         return {"message": "Rating successful"}
 
-    if (
-        first_query_dict.get("member_id")
-        == second_query_dict.get("rated_member_id")
-        and second_query_dict.get("member_id")
-        == first_query_dict.get("rated_member_id")
+    if first_query_dict.get("member_id") == second_query_dict.get(
+        "rated_member_id"
+    ) and second_query_dict.get("member_id") == first_query_dict.get(
+        "rated_member_id"
     ):
         # Send email to the members
         member_query = select(participant).where(
@@ -144,7 +143,7 @@ async def rate_member(
         rated_member_result_dict = rated_member_result.fetchone()._mapping
         rated_member_email = rated_member_result_dict.get("email")
         print("member_email", member_email)
-        print("rated_member_email",rated_member_email)
+        print("rated_member_email", rated_member_email)
         message = MessageSchema(
             subject="You liked a member!",
             recipients=[

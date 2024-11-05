@@ -11,7 +11,7 @@ from auth.schemas import User
 from participants.database import get_async_session
 from participants.models import participant
 
-router = APIRouter(prefix="/api/auth", tags=["auth"])
+router = APIRouter(prefix="/api/auth", tags=["/auth"])
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/token")

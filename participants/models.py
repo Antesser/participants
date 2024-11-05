@@ -1,8 +1,10 @@
 from datetime import datetime, timezone
+
 from sqlalchemy import (
     TIMESTAMP,
     Column,
     Date,
+    Float,
     ForeignKey,
     Integer,
     LargeBinary,
@@ -24,6 +26,8 @@ participant = Table(
         "date", TIMESTAMP(timezone=True), default=datetime.now(timezone.utc)
     ),
     Column("password", LargeBinary),
+    Column("latitude", Float),
+    Column("longitude", Float),
 )
 
 
